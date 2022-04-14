@@ -137,8 +137,9 @@ namespace BookDepository
                 int index = number - 1;
                 Console.Write($"будет удалениа книга ");
                 depository.Books[index].ToDisplay();
-                
-                depository.DeleteBook(index);
+
+                if (Confirm("удаление"))
+                    depository.DeleteBook(index);
             }
             else
             {
@@ -146,6 +147,14 @@ namespace BookDepository
             }
 
             depository.SaveBooks(FileName);
+        }
+
+        private bool Confirm(string message)
+        {
+            Console.WriteLine($"1 - подтвердить {message}\n9 - отменить {message}");
+            string userInput = Console.ReadLine();
+
+            return (userInput == "1") ? true : false;
         }
     }
 
@@ -283,7 +292,7 @@ namespace BookDepository
             char oldChar = ';';
             char newChar = '.';
 
-            line.Replace(oldChar, newChar);            
+            line.Replace(oldChar, newChar);
 
             return line;
         }
