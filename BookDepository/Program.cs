@@ -18,7 +18,7 @@ namespace BookDepository
     {
         Depository depository;
 
-        private const string _fileName = "books";
+        private const string FileName = "books";
 
         public Librarian()
         {
@@ -123,7 +123,7 @@ namespace BookDepository
             int.TryParse(Console.ReadLine(), out int year);
 
             depository.AddBook(author, title, year);
-            depository.SaveBooks(_fileName);
+            depository.SaveBooks(FileName);
         }
 
         private void DeleteBookSubMenu()
@@ -145,7 +145,7 @@ namespace BookDepository
                 Console.WriteLine($"несоответствие номера книги");
             }
 
-            depository.SaveBooks(_fileName);
+            depository.SaveBooks(FileName);
         }
     }
 
@@ -207,8 +207,8 @@ namespace BookDepository
 
         public void AddBook(string author, string title, int year)
         {
-            author = CheckSymbol(author);
-            title = CheckSymbol(title);
+            author = ReplaceSymbol(author);
+            title = ReplaceSymbol(title);
 
             _books.Add(new Book(title, author, year));
         }
@@ -278,22 +278,12 @@ namespace BookDepository
             }
         }
 
-        private string CheckSymbol(string line)
+        private string ReplaceSymbol(string line)
         {
-            char semicolon = ';';
+            char oldChar = ';';
+            char newChar = '.';
 
-            if (line.Contains(semicolon))
-            {
-                char[] array = line.ToCharArray();
-                line = "";
-                for (int i = 0; i < array.Length; i++)
-                {
-                    if (array[i] == semicolon)
-                        array[i] = '.';
-
-                    line += array[i];
-                }
-            }
+            line.Replace(oldChar, newChar);            
 
             return line;
         }
