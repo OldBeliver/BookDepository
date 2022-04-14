@@ -240,21 +240,21 @@ namespace BookDepository
 
         public void SortByAuthor(string text)
         {
-            var filteredAuthor = _books.Where(author => author.Author.ToLower().Contains(text.ToLower()));
+            var filteredAuthor = _books.Where(name => name.Author.ToLower().Contains(text.ToLower()));
 
             switch (text)
             {
                 case "1":
-                    filteredAuthor = _books.OrderBy(author => author.Author);
+                    filteredAuthor = _books.OrderBy(name => name.Author);
                     break;
                 case "9":
-                    filteredAuthor = _books.OrderByDescending(author => author.Author);
+                    filteredAuthor = _books.OrderByDescending(name => name.Author);
                     break;
             }
 
-            foreach (Book author in filteredAuthor)
+            foreach (Book name in filteredAuthor)
             {
-                author.ToDisplay();
+                name.ToDisplay();
             }
         }
 
