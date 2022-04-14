@@ -103,9 +103,17 @@ namespace BookDepository
 
         private void SortByYearSubMenu()
         {
-            Console.WriteLine($"СОРТИРОВКА ПО ГОДАМ\n");
-            Console.WriteLine($"1 - по возрастанию\n9 - по убыванию\nточное число - фильтрация по году");
-            int.TryParse(Console.ReadLine(), out int number);
+            bool isNumber = false;
+            int number = 0;
+
+            while (isNumber == false)
+            {
+                Console.Clear();
+                Console.WriteLine($"СОРТИРОВКА ПО ГОДАМ\n");
+                Console.WriteLine($"1 - по возрастанию\n9 - по убыванию\nточное число - фильтрация по году");
+
+                isNumber = int.TryParse(Console.ReadLine(), out number);
+            }
 
             depository.SortByYear(number);
         }
