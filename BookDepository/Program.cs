@@ -132,7 +132,7 @@ namespace BookDepository
             Console.Write($"Введите номер книги для удаления: ");
             int.TryParse(Console.ReadLine(), out int number);
 
-            if (number > 0 && number < depository.Books.Count)
+            if (number > 0 && number <= depository.Books.Count)
             {
                 int index = number - 1;
                 Console.Write($"удалена книга ");
@@ -232,7 +232,7 @@ namespace BookDepository
                     break;
             }
 
-            foreach (var book in filteredTitle)
+            foreach (Book book in filteredTitle)
             {
                 book.ToDisplay();
             }
@@ -252,7 +252,7 @@ namespace BookDepository
                     break;
             }
 
-            foreach (var author in filteredAuthor)
+            foreach (Book author in filteredAuthor)
             {
                 author.ToDisplay();
             }
@@ -272,7 +272,7 @@ namespace BookDepository
                     break;
             }
 
-            foreach (var year in filteredYear)
+            foreach (Book year in filteredYear)
             {
                 year.ToDisplay();
             }
