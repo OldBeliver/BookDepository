@@ -87,18 +87,18 @@ namespace BookDepository
         {
             Console.WriteLine($"СОРТИРОВКА ПО НАЗВАНИЮ\n");
             Console.WriteLine($"1 - по возрастанию\n9 - по убыванию\nслово - фильтрация по слову/части слова");
-            string title = Console.ReadLine();
+            string userInput = Console.ReadLine();
 
-            depository.SortByTitle(title);
+            depository.SortByTitle(userInput);
         }
 
         private void SortByAuthorSubMenu()
         {
             Console.WriteLine($"СОРТИРОВКА ПО АВТОРУ\n");
             Console.WriteLine($"1 - по возрастанию\n9 - по убыванию\nслово - фильтрация по слову/части слова");
-            string author = Console.ReadLine();
+            string userInput = Console.ReadLine();
 
-            depository.SortByAuthor(author);
+            depository.SortByAuthor(userInput);
         }
 
         private void SortByYearSubMenu()
@@ -135,9 +135,9 @@ namespace BookDepository
             if (number > 0 && number <= depository.Books.Count)
             {
                 int index = number - 1;
-                Console.Write($"удалена книга ");
+                Console.Write($"будет удалениа книга ");
                 depository.Books[index].ToDisplay();
-
+                
                 depository.DeleteBook(index);
             }
             else
@@ -218,11 +218,11 @@ namespace BookDepository
             _books.RemoveAt(index);
         }
 
-        public void SortByTitle(string text)
+        public void SortByTitle(string userInput)
         {
-            var filteredTitle = _books.Where(book => book.Title.ToLower().Contains(text.ToLower()));
+            var filteredTitle = _books.Where(book => book.Title.ToLower().Contains(userInput.ToLower()));
 
-            switch (text)
+            switch (userInput)
             {
                 case "1":
                     filteredTitle = _books.OrderBy(book => book.Title);
@@ -238,11 +238,11 @@ namespace BookDepository
             }
         }
 
-        public void SortByAuthor(string text)
+        public void SortByAuthor(string userInput)
         {
-            var filteredAuthor = _books.Where(name => name.Author.ToLower().Contains(text.ToLower()));
+            var filteredAuthor = _books.Where(name => name.Author.ToLower().Contains(userInput.ToLower()));
 
-            switch (text)
+            switch (userInput)
             {
                 case "1":
                     filteredAuthor = _books.OrderBy(name => name.Author);
@@ -258,11 +258,11 @@ namespace BookDepository
             }
         }
 
-        public void SortByYear(int number)
+        public void SortByYear(int userInput)
         {
-            var filteredYear = _books.Where(year => year.Published.Equals(number));
+            var filteredYear = _books.Where(year => year.Published.Equals(userInput));
 
-            switch (number)
+            switch (userInput)
             {
                 case 1:
                     filteredYear = _books.OrderBy(year => year.Published);
